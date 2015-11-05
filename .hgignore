@@ -1,0 +1,4 @@
+coverage/
+ChangeLog
+pkg/
+config.yml
