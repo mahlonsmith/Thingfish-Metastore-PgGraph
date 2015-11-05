@@ -1,8 +1,8 @@
-= Thingfish PostgreSQL Metastore
+# Thingfish PostgreSQL Metastore
 
 * http://bitbucket.org/mahlon/thingfish-metastore-pggraph
 
-== Description
+## Description
 
 This is a metadata storage plugin for the Thingfish digital asset
 manager.  It provides persistent storage for uploaded data to a
@@ -12,18 +12,18 @@ It is heavily based on the regular PG metastore, however it differs by
 storing objects as nodes, and their relations as edges.
 
 
-== Authors
+## Authors
 
 * Michael Granger <ged@FaerieMUD.org>
 * Mahlon E. Smith <mahlon@martini.nu>
 
 
-== Installation
+## Installation
 
     $ gem install thingfish-metastore-pggraph
 
 
-==  Usage
+##  Usage
 
 As with Thingfish itself, this plugin uses
 Configurability[https://rubygems.org/gems/configurability] to modify
@@ -42,7 +42,7 @@ Here's an example configuration file that enables this plugin.
 When Thingfish starts, it will install the necessary database schema
 automatically.
 
-== License
+## License
 
 Copyright (c) 2014-2015, Michael Granger and Mahlon E. Smith.
 
