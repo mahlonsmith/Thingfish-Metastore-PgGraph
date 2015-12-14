@@ -24,7 +24,7 @@ class Thingfish::Metastore::PgGraph < Thingfish::Metastore
 
 
 	# Package version
-	VERSION = '0.1.0'
+	VERSION = '0.1.1'
 
 	# Version control revision
 	REVISION = %q$Revision$
@@ -175,7 +175,8 @@ class Thingfish::Metastore::PgGraph < Thingfish::Metastore
 	### specified +oid+.
 	def fetch_value( oid, key )
 		metadata = self.model[ oid ] or return nil
-		return metadata.send( key )
+		key = key.to_sym
+		return metadata[ key ] || metadata.user_metadata[ key ]
 	end
 
 
@@ -199,6 +200,8 @@ class Thingfish::Metastore::PgGraph < Thingfish::Metastore
 		ds = self.apply_search_order( ds, options )
 		ds = self.apply_search_direction( ds, options )
 		ds = self.apply_search_limit( ds, options )
+
+		self.log.debug "Dataset for search is: %s" % [ ds.sql ]
 
 		return ds.map {|row| row[:id] }
 	end
@@ -276,7 +279,8 @@ class Thingfish::Metastore::PgGraph < Thingfish::Metastore
 	def apply_search_order( ds, options )
 		if options[:order]
 			columns = Array( options[:order] )
-			ds = ds.order( columns.map(&:to_sym) )
+			self.log.debug "  ordering results by columns: %p" % [ columns ]
+			ds = ds.order_metadata( columns )
 		end
 
 		return ds
