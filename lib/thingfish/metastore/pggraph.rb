@@ -24,7 +24,7 @@ class Thingfish::Metastore::PgGraph < Thingfish::Metastore
 
 
 	# Package version
-	VERSION = '0.1.1'
+	VERSION = '0.1.2'
 
 	# Version control revision
 	REVISION = %q$Revision$

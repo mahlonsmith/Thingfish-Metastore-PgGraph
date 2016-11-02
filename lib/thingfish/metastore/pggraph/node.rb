@@ -75,7 +75,7 @@ class Thingfish::Metastore::PgGraph::Node < Sequel::Model( :nodes )
 			columns.flatten!
 			ds = self
 			columns.each do |column|
-				if Thingfish::Metastore::PG::Metadata.metadata_columns.include?( column.to_sym )
+				if Thingfish::Metastore::PgGraph::Node.metadata_columns.include?( column.to_sym )
 					ds = ds.order_append( column.to_sym )
 				else
 					ds = ds.order_append( self.user_metadata_expr(column) )
