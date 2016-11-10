@@ -54,9 +54,11 @@ class Thingfish::Metastore::PgGraph::Node < Sequel::Model( :nodes )
 				#
 				else
 					if field.to_sym == :relationship
-						ds = self.join_edges.filter( Sequel.pg_jsonb( :edges__prop ).get_text( field.to_s ) => value )
+						ds = ds.join_edges unless ds.joined_dataset?
+						ds = ds.filter( Sequel.pg_jsonb( :edges__prop ).get_text( field.to_s ) => value )
 
 					elsif field.to_sym == :relation
+						ds = ds.join_edges unless ds.joined_dataset?
 						ds = self.join_edges.filter( :edges__id_p => value )
 
 					else
