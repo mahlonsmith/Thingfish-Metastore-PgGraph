@@ -5,8 +5,8 @@
 ## Description
 
 This is a metadata storage plugin for the Thingfish digital asset
-manager.  It provides persistent storage for uploaded data to a
-PostgreSQL table.
+manager.  It provides persistent storage for uploaded data to
+PostgreSQL tables.
 
 It is heavily based on the regular PG metastore, however it differs by
 storing objects as nodes, and their relations as edges.
