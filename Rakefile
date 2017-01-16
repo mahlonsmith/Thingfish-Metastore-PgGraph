@@ -50,9 +50,8 @@ storing objects as nodes, and their relations as edges.
 	EOF
 	s.required_ruby_version = '>= 2.3'
 
-	s.add_dependency 'thingfish', '~> 0.5'
+	s.add_dependency 'thingfish', '~> 0.6'
 	s.add_dependency 'loggability', '~> 0.11'
-	s.add_dependency 'configurability', '~> 2.2'
 	s.add_dependency 'sequel', '~> 4.35'
 	s.add_dependency 'pg', '~> 0.19'
 end
