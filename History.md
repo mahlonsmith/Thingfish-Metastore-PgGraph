@@ -1,3 +1,8 @@
+## v0.2.0 [2018-01-17] Mahlon E. Smith <mahlon@martini.nu>
+
+Update for Sequel 5.x.
+
+
 ## v0.2.0 [2017-01-16] Mahlon E. Smith <mahlon@martini.nu>
 
 Update for Configurability 3.x.

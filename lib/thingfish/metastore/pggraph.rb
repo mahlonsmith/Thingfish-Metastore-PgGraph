@@ -24,7 +24,7 @@ class Thingfish::Metastore::PgGraph < Thingfish::Metastore
 
 
 	# Package version
-	VERSION = '0.2.0'
+	VERSION = '0.3.0'
 
 	# Version control revision
 	REVISION = %q$Revision$
@@ -59,12 +59,13 @@ class Thingfish::Metastore::PgGraph < Thingfish::Metastore
 	### Set up the metastore database and migrate to the latest version.
 	def self::setup_database
 		Sequel.extension :pg_json_ops
+		Sequel.split_symbols = true
+		Sequel::Model.require_valid_table = false
 
 		self.db = Sequel.connect( self.uri )
 		self.db.logger = Loggability[ Thingfish::Metastore::PgGraph ]
 		self.db.extension :pg_streaming
 		self.db.stream_all_queries = true
-		self.db.optimize_model_load = true
 		self.db.sql_log_level = :debug
 		self.db.extension( :pg_json )
 		self.db.log_warn_duration = self.slow_query_seconds
@@ -103,8 +104,9 @@ class Thingfish::Metastore::PgGraph < Thingfish::Metastore
 	def initialize( * ) # :notnew:
 		require 'thingfish/metastore/pggraph/node'
 		require 'thingfish/metastore/pggraph/edge'
-		Thingfish::Metastore::PgGraph::Node.db = self.class.db
-		Thingfish::Metastore::PgGraph::Edge.db = self.class.db
+
+		Thingfish::Metastore::PgGraph::Node.dataset = self.class.db[ :nodes ]
+		Thingfish::Metastore::PgGraph::Edge.dataset = self.class.db[ :edges ]
 		@model = Thingfish::Metastore::PgGraph::Node
 	end
 
