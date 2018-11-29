@@ -24,21 +24,20 @@ class Thingfish::Metastore::PgGraph < Thingfish::Metastore
 
 
 	# Package version
-	VERSION = '0.3.0'
+	VERSION = '0.3.1'
 
 	# Version control revision
-	REVISION = %q$Revision$
+	REVISION = %q$Revision: 686fbfe638bd $
 
 	# The data directory that contains migration files.
 	#
 	DATADIR = if ENV['THINGFISH_METASTORE_PGGRAPH_DATADIR']
-			Pathname.new( ENV['THINGFISH_METASTORE_PGGRAPH_DATADIR'] )
-		elsif Gem.datadir( 'thingfish-metastore-pggraph' )
-			Pathname.new( Gem.datadir('thingfish-metastore-pggraph') )
-		else
-			Pathname.new( __FILE__ ).dirname.parent.parent.parent +
-				'data' + 'thingfish-metastore-pggraph'
-		end
+				   Pathname( ENV['PEDIA_DATADIR'] )
+			   elsif Gem.loaded_specs[ 'thingfish-metastore-pggraph' ] && File.exist?( Gem.loaded_specs['thingfish-metastore-pggraph'].datadir )
+				   Pathname( Gem.loaded_specs['thingfish-metastore-pggraph'].datadir )
+			   else
+				   Pathname( __FILE__ ).dirname.parent.parent.parent + 'data/thingfish-metastore-pggraph'
+			   end
 
 	log_as :thingfish_metastore_pggraph
 
