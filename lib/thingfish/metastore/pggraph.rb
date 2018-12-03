@@ -32,7 +32,7 @@ class Thingfish::Metastore::PgGraph < Thingfish::Metastore
 	# The data directory that contains migration files.
 	#
 	DATADIR = if ENV['THINGFISH_METASTORE_PGGRAPH_DATADIR']
-				   Pathname( ENV['PEDIA_DATADIR'] )
+				   Pathname( ENV['THINGFISH_METASTORE_PGGRAPH_DATADIR'] )
 			   elsif Gem.loaded_specs[ 'thingfish-metastore-pggraph' ] && File.exist?( Gem.loaded_specs['thingfish-metastore-pggraph'].datadir )
 				   Pathname( Gem.loaded_specs['thingfish-metastore-pggraph'].datadir )
 			   else
