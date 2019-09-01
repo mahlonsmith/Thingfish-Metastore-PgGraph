@@ -1,6 +1,9 @@
 # Thingfish PostgreSQL Metastore
 
-* http://bitbucket.org/mahlon/thingfish-metastore-pggraph
+  * http://code.martini.nu/thingfish-metastore-pggraph
+  * https://github.com/mahlonsmith/thingfish-metastore-pggraph
+  * https://hg.sr.ht/~mahlon/Thingfish-Metastore-PgGraph
+
 
 ## Description
 
